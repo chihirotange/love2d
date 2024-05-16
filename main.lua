@@ -6,20 +6,19 @@ function love.load()
     flux = require "lib/flux"
     require("card")
     require("component/physic")
+    require("component/graphic")
 
-    card1 = Card:new()
-    card1:AddToUpdate()
-
+    card1 = Card:new(100, 100)
+    card1 = Card:new(200, 200)
 end
 function love.update(dt)
     flux.update(dt)
     if love.keyboard.isDown("escape") then
         love.event.quit()
     end
-
     TickPhysic()
 
 end
 function love.draw()
-    card1:Draw()
+    TickRender()
 end

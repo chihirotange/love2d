@@ -12,22 +12,30 @@ function TickPhysic()
         v:Update()
     end
 end
-
-HasPosition = {
+HasPhysic = {
     x = 0,
-    y = 0
+    y = 0,
+    -- addedToPhysicUpdate = false,
+    AddToPhysicEngineUpdate = function(self)
+        -- if self.addedToPhysicUpdate then
+        --     return
+        -- else
+        table.insert(PendingAddPhysicComponents, self)
+            -- self.addedToPhysicUpdate = true
+        -- end
+    end
 }
 
 HasBoxCollider = {
     width = 100,
     height = 100,
     isMouseOver = false,
-    AddToUpdate = function(self)
-        table.insert(PendingAddPhysicComponents,self)
-    end,
-    RemoveFromUpdate = function(self)
-        table.remove(PendingRemovePhysicComponents, self)
-    end,
+    -- AddToUpdate = function(self)
+    --     table.insert(PendingAddPhysicComponents,self)
+    -- end,
+    -- RemoveFromUpdate = function(self)
+    --     table.remove(PendingRemovePhysicComponents, self)
+    -- end,
     Update = function(self)
         local mouseX, mouseY = love.mouse.getPosition()
         if self.x <= mouseX and mouseX <= self.x + self.width 
