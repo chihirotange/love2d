@@ -5,25 +5,41 @@ require "component/graphic"
 Card = class("Card")
 
 --CONSTRUCTOR
-function Card:initialize(x, y)
-    self.x = x
-    self.y = y
+function Card:initialize(x, y, width, height)
+    self.x = x or 0
+    self.y = y or 0
+    self.width = width or 50
+    self.height = height or 50
     self:AddToPhysicEngineUpdate()
     self:AddToRenderEngineUpdate()
+
+    -- Local members
+    Card.isBeingGrabbed = false
 end
+
 
 -- PHYSICS
 Card:include(HasPhysic)
--- Card.x = 100
--- Card.y = 200
+function Card:PrephysicUpdate()
+    if self.isBeingGrabbed then
+        local mouseX, mouseY = love.mouse.getPosition()
+        self:MoveToPosition(mouseX - self.width/2, mouseY - self.height/2)
+    end
+end
+function Card:PhysicUpdate()
+    HasBoxCollider.Update(self)
+end
 
 Card:include(HasBoxCollider)
-Card.width = 100
-Card.height = 150
 function Card:OnMouseEntered()
 end
 function Card:OnMouseClicked()
-    self:MoveToPosition(math.random(600), math.random(600))
+end
+function Card:OnMouseDown()
+    self.isBeingGrabbed = true
+end
+function Card:OnMouseReleased()
+    self.isBeingGrabbed = false
 end
 
 Card:include(CanBeMoved)
