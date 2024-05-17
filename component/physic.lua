@@ -24,6 +24,7 @@ MouseState = {
             if self.holdingObject then
                 self.holdingObject:OnMouseReleased()
                 self.isHoldingSomething = false
+                self.holdingObject = nil
             end 
         end
     end
@@ -128,7 +129,7 @@ HasBoxCollider = {
 
 CanBeMoved = {
     MoveToPosition = function(self, x, y)
-        self.x = lerp(self.x, x, 0.1)
-        self.y = lerp(self.y, y, 0.1)
+        self.x = lerp(self.x, x, 0.4)
+        self.y = lerp(self.y, y, 0.4)
     end
 }
