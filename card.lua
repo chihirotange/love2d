@@ -1,4 +1,4 @@
-local class = require "lib/middleclass"
+-- local class = require "lib/middleclass"
 require "component/physic"
 require "component/graphic"
 
@@ -6,6 +6,7 @@ Card = class("Card")
 
 --CONSTRUCTOR
 function Card:initialize(x, y, width, height)
+    print("hehe")
     self.x = x or 0
     self.y = y or 0
     self.width = width or 50
@@ -31,6 +32,8 @@ function Card:PhysicUpdate()
 end
 
 Card:include(HasBoxCollider)
+
+Card:include(CanListenToMouseEvents)
 function Card:OnMouseEntered()
 end
 function Card:OnMouseClicked()

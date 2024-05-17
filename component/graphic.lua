@@ -13,6 +13,7 @@ end
 
 CanBeRendered = {
     AddToRenderEngineUpdate = function(self)
+        print("added")
         table.insert(PendingAddRenderComponents, self)
     end,
     drawIndex = 0,
