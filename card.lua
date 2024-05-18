@@ -1,6 +1,7 @@
 local class = require "lib/middleclass"
 local Physic = require "component/physic"
 local Graphic = require "component/graphic"
+local GameplayEventSystem = require "core/gameplayEventSystem"
 
 local Card = class("Card")
 
@@ -22,6 +23,7 @@ function Card:PhysicUpdate()
     if self.isBeingGrabbed then
         local mouseX, mouseY = love.mouse.getPosition()
         self:MoveToPosition(mouseX - self.width/2, mouseY - self.height/2)
+        self.GameplayEventSystem:EmitCardSelectedEvent()
     else
         self:MoveToPosition(self.OriginX - self.width/2, self.OriginY - self.height/2)
     end
@@ -43,6 +45,9 @@ end
 
 Card:include(Physic.CanBeMoved)
 Card:include(Physic.HasOrigin)
+
+-- EVENTS
+Card:include(GameplayEventSystem.CanEmitEvent)
 
 -- GRAPHICS
 Card:include(Graphic.CanBeRendered)

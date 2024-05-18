@@ -9,11 +9,13 @@ function love.load()
     Graphic = require "component/graphic"
     Mouse = require "core/mouseObject"
     CardContainer = require "core/CardContainer"
+    GameplayEventSystem = require "core/GameplayEventSystem"
 
     cardContainer = CardContainer:new(love.graphics.getWidth()/2, love.graphics.getHeight()*2/3, 100)
 
     for i = 1, 10 do
         local card = Card:new(0,0, 80, 130)
+        GameplayEventSystem:InitGameplayEventSystem(card)
         cardContainer:AddItemToContainer(card)
     end
 end

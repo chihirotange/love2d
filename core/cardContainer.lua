@@ -25,8 +25,7 @@ end
 --
 CardContainer:include({
     CardGap = 0,
-    ItemsList = {},
-    love.mouse.getPosition()
+    ItemsList = {}
 })
 function CardContainer:AddItemToContainer(item)
     if item.SetOrigin then

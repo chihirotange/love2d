@@ -50,8 +50,8 @@ local Physic = {
     },
     CanBeMoved = {
         MoveToPosition = function(self, x, y)
-            self.x = lerp(self.x, x, 0.4)
-            self.y = lerp(self.y, y, 0.4)
+            self.x = lerp(self.x, x, 0.2)
+            self.y = lerp(self.y, y, 0.2)
         end
     },
     HasOrigin = {
