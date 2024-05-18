@@ -53,6 +53,17 @@ local Physic = {
             self.x = lerp(self.x, x, 0.4)
             self.y = lerp(self.y, y, 0.4)
         end
+    },
+    HasOrigin = {
+        OriginX = 0,
+        OriginY = 0,
+        SetOrigin = function(self, x, y)
+            self.OriginX = x
+            self.OriginY = y 
+        end,
+        GetOrigin = function(self)
+            return self.OriginX, self.OriginY
+        end
     }
 }
 function lerp(a,b,t) return (1-t)*a + t*b end

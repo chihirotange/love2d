@@ -6,7 +6,6 @@ local Card = class("Card")
 
 --CONSTRUCTOR
 function Card:initialize(x, y, width, height)
-    print("hehe")
     self.x = x or 0
     self.y = y or 0
     self.width = width or 50
@@ -23,7 +22,10 @@ function Card:PhysicUpdate()
     if self.isBeingGrabbed then
         local mouseX, mouseY = love.mouse.getPosition()
         self:MoveToPosition(mouseX - self.width/2, mouseY - self.height/2)
+    else
+        self:MoveToPosition(self.OriginX - self.width/2, self.OriginY - self.height/2)
     end
+
 end
 Card:include(Physic.HasBoxCollider)
 
@@ -40,6 +42,7 @@ function Card:OnMouseReleased()
 end
 
 Card:include(Physic.CanBeMoved)
+Card:include(Physic.HasOrigin)
 
 -- GRAPHICS
 Card:include(Graphic.CanBeRendered)
