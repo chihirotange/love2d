@@ -2,6 +2,7 @@ local gameplayEventSystem = {
     InitGameplayEventSystem = function(self, objectToInit)
         objectToInit.GameplayEventSystem = self
     end,
+    -- card select
     CardSelectedListeners = {},
     BindToCardSelectedEvent = function(self, delegate)
         table.insert(self.CardSelectedListeners, delegate)
@@ -11,6 +12,8 @@ local gameplayEventSystem = {
             v() -- magic
         end
     end,
+
+
     CanEmitEvent = {
         GameplayEventSystem = nil,
     }
