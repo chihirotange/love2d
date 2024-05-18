@@ -1,8 +1,8 @@
--- local class = require "lib/middleclass"
-require "component/physic"
-require "component/graphic"
+local class = require "lib/middleclass"
+local Physic = require "component/physic"
+local Graphic = require "component/graphic"
 
-Card = class("Card")
+local Card = class("Card")
 
 --CONSTRUCTOR
 function Card:initialize(x, y, width, height)
@@ -11,29 +11,23 @@ function Card:initialize(x, y, width, height)
     self.y = y or 0
     self.width = width or 50
     self.height = height or 50
-    self:AddToPhysicEngineUpdate()
-    self:AddToRenderEngineUpdate()
-
-    -- Local members
+    Physic:AddToPhysicUpdate(self)
+    Graphic:AddToRenderUpdate(self)
     Card.isBeingGrabbed = false
 end
 
 
 -- PHYSICS
-Card:include(HasPhysic)
-function Card:PrephysicUpdate()
+Card:include(Physic.HasPhysic)
+function Card:PhysicUpdate()
     if self.isBeingGrabbed then
         local mouseX, mouseY = love.mouse.getPosition()
         self:MoveToPosition(mouseX - self.width/2, mouseY - self.height/2)
     end
 end
-function Card:PhysicUpdate()
-    HasBoxCollider.Update(self)
-end
+Card:include(Physic.HasBoxCollider)
 
-Card:include(HasBoxCollider)
-
-Card:include(CanListenToMouseEvents)
+Card:include(Physic.CanListenToMouseEvents)
 function Card:OnMouseEntered()
 end
 function Card:OnMouseClicked()
@@ -45,10 +39,12 @@ function Card:OnMouseReleased()
     self.isBeingGrabbed = false
 end
 
-Card:include(CanBeMoved)
+Card:include(Physic.CanBeMoved)
 
 -- GRAPHICS
-Card:include(CanBeRendered)
+Card:include(Graphic.CanBeRendered)
 function Card:Draw()
     love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
 end
+
+return Card

@@ -1,22 +1,22 @@
-RenderComponents = {}
-PendingAddRenderComponents = {}
-
-function TickRender()
-    for k, v in ipairs(PendingAddRenderComponents) do
-        table.insert(RenderComponents, v)
-        PendingAddRenderComponents[k] = nil
-    end
-    for k, v in ipairs(RenderComponents) do
-        v:Draw()
-    end
-end
-
-CanBeRendered = {
-    AddToRenderEngineUpdate = function(self)
-        print("added")
-        table.insert(PendingAddRenderComponents, self)
+local graphic = {
+    RenderComponents = {},
+    PendingAddRenderComponents = {},
+    AddToRenderUpdate = function(self, object)
+        table.insert(self.PendingAddRenderComponents, object)
     end,
-    drawIndex = 0,
-    Draw = function(self)
-    end
+    Update = function(self) 
+        for k, v in ipairs(self.PendingAddRenderComponents) do
+            table.insert(self.RenderComponents, v)
+            self.PendingAddRenderComponents[k] = nil
+        end
+        for k, v in ipairs(self.RenderComponents) do
+            v:Draw()
+        end
+    end,
+    CanBeRendered = {
+        drawIndex = 0,
+        Draw = function(self)
+        end
+    }
 }
+return graphic
