@@ -13,6 +13,13 @@ local Physic = {
             v:PhysicUpdate()
         end
     end,
+    OnMouseClicked = function(self)
+        for k,v in ipairs(self.PhysicComponents) do
+            if v:IsCollideWithMouse() then
+                v:OnMouseClicked()
+            end
+        end
+    end,
     HasPhysic = {
         x = 0,
         y = 0,
@@ -31,12 +38,8 @@ local Physic = {
         end
     },
     HasBoxCollider = {
-            HasBoxCollider = {
-                isMouseAlreadyDown = false,
-            },
             width = 100,
             height = 100,
-            isMouseOver = false,
             -- @TODO: move to metatable
             IsCollideWithMouse = function(self)
                 local mouseX, mouseY = love.mouse.getPosition()

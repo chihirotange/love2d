@@ -4,17 +4,23 @@ end
 
 function love.load()
     Flux = require "lib/flux"
-    Card = require "card"
+    Card = require "playingCard"
     Physic = require "component/physic"
     Graphic = require "component/graphic"
     Mouse = require "core/mouseObject"
     CardContainer = require "core/CardContainer"
     GameplayEventSystem = require "core/GameplayEventSystem"
+    cardContainer = CardContainer:new(love.graphics.getWidth()/2, love.graphics.getHeight()*2/3, 100)
     UISystem = require "lib/ui"
 
-    cardContainer = CardContainer:new(love.graphics.getWidth()/2, love.graphics.getHeight()*2/3, 100)
+    gameUI = require "gameui"
 
-    CreateUI()
+    gameUI:Init(GameplayEventSystem)
+    gameUI:CreateUI()
+
+    playerController = require "playerController"
+    playerController:Init(GameplayEventSystem)
+
     for i = 1, 10 do
         local card = Card:new(0,0, 80, 130)
         GameplayEventSystem:BindToUIPlayCardEvent(card.TestFunc)
@@ -37,13 +43,6 @@ function love.draw()
 end
 
 function love.mousepressed()
+    Physic:OnMouseClicked()
     UISystem:OnMouseClicked()
-end
-
-function CreateUI()
-    local button = UISystem.button:new(10, 10, 120, 40, "Play")
-    function button:OnMouseClicked()
-        GameplayEventSystem:EmitUIPlayCardEvent()
-    end
-    local button2 = UISystem.button:new(200, 10, 120, 40, "Discard")
 end

@@ -14,15 +14,12 @@ function Card:initialize(x, y, width, height)
     Graphic:AddToRenderUpdate(self)
     Card.isBeingGrabbed = false
 end
-
-
 -- PHYSICS
 Card:include(Physic.HasPhysic)
 function Card:PhysicUpdate()
     if self.isBeingGrabbed then
         local mouseX, mouseY = love.mouse.getPosition()
         self:MoveToPosition(mouseX - self.width/2, mouseY - self.height/2)
-        self.GameplayEventSystem:EmitCardSelectedEvent()
     else
         self:MoveToPosition(self.OriginX - self.width/2, self.OriginY - self.height/2)
     end
@@ -34,6 +31,7 @@ Card:include(Physic.CanListenToMouseEvents)
 function Card:OnMouseEntered()
 end
 function Card:OnMouseClicked()
+
 end
 function Card:OnMouseDown()
     self.isBeingGrabbed = true
@@ -55,5 +53,7 @@ Card:include(Graphic.CanBeRendered)
 function Card:Draw()
     love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
 end
+
+-- GAMEPLAY
 
 return Card
