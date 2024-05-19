@@ -3,7 +3,7 @@ local gameplayEventSystem = {
         objectToInit.GameplayEventSystem = self
     end,
     -- card select
-    CardSelectedListeners = {},
+    CardSelectedListeners = {1},
     BindToCardSelectedEvent = function(self, delegate)
         table.insert(self.CardSelectedListeners, delegate)
     end,
@@ -13,10 +13,16 @@ local gameplayEventSystem = {
         end
     end,
 
-
-    CanEmitEvent = {
-        GameplayEventSystem = nil,
-    }
+    UIPlayCardListeners = {},
+    BindToUIPlayCardEvent = function(self, delegate)
+        table.insert(self.UIPlayCardListeners, delegate)
+    end,
+    EmitUIPlayCardEvent = function(self)
+        print(#self.UIPlayCardListeners)
+        for k,v in ipairs(self.UIPlayCardListeners) do
+            v()
+        end
+    end
 }
 
 return gameplayEventSystem

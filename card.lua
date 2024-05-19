@@ -1,7 +1,6 @@
 local class = require "lib/middleclass"
 local Physic = require "component/physic"
 local Graphic = require "component/graphic"
-local GameplayEventSystem = require "core/gameplayEventSystem"
 
 local Card = class("Card")
 
@@ -47,7 +46,9 @@ Card:include(Physic.CanBeMoved)
 Card:include(Physic.HasOrigin)
 
 -- EVENTS
-Card:include(GameplayEventSystem.CanEmitEvent)
+function Card:TestFunc()
+    print("hello")
+end
 
 -- GRAPHICS
 Card:include(Graphic.CanBeRendered)

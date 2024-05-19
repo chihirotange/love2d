@@ -17,7 +17,7 @@ function love.load()
     CreateUI()
     for i = 1, 10 do
         local card = Card:new(0,0, 80, 130)
-        GameplayEventSystem:InitGameplayEventSystem(card)
+        GameplayEventSystem:BindToUIPlayCardEvent(card.TestFunc)
         cardContainer:AddItemToContainer(card)
     end
 end
@@ -42,5 +42,8 @@ end
 
 function CreateUI()
     local button = UISystem.button:new(10, 10, 120, 40, "Play")
+    function button:OnMouseClicked()
+        GameplayEventSystem:EmitUIPlayCardEvent()
+    end
     local button2 = UISystem.button:new(200, 10, 120, 40, "Discard")
 end
