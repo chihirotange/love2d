@@ -8,12 +8,12 @@ function love.load()
     Physic = require "component/physic"
     Graphic = require "component/graphic"
     Mouse = require "core/mouseObject"
-    CardContainer = require "core/CardContainer"
-    GameplayEventSystem = require "core/GameplayEventSystem"
+    CardContainer = require "core/cardContainer"
+    GameplayEventSystem = require "core/gameplayEventSystem"
     cardContainer = CardContainer:new(love.graphics.getWidth()/2, love.graphics.getHeight()*2/3, 100)
     UISystem = require "lib/ui"
 
-    gameUI = require "gameui"
+    gameUI = require "gameUi"
 
     gameUI:Init(GameplayEventSystem)
     gameUI:CreateUI()
