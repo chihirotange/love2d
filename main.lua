@@ -12,6 +12,8 @@ function love.load()
     GameplayEventSystem = require "core/gameplayEventSystem"
     cardContainer = CardContainer:new(love.graphics.getWidth()/2, love.graphics.getHeight()*2/3, 100)
     UISystem = require "lib/ui"
+    
+    Debug = require "lib/debug"
 
     gameUI = require "gameUi"
 
@@ -21,7 +23,7 @@ function love.load()
     playerController = require "playerController"
     playerController:Init(GameplayEventSystem)
 
-    for i = 1, 10 do
+    for i = 1, 1000 do
         local card = Card:new(0,0, 80, 130)
         GameplayEventSystem:BindToUIPlayCardEvent(card.TestFunc)
         cardContainer:AddItemToContainer(card)
@@ -36,10 +38,12 @@ function love.update(dt)
 
     Mouse:DetectMouseOnObjectsEvent(Physic.PhysicComponents)
     UISystem:Update()
+    Debug:Update(dt)
 end
 function love.draw()
     Graphic:Update()
     UISystem:Draw()
+    Debug:Draw()
 end
 
 function love.mousepressed()
