@@ -3,6 +3,7 @@ if arg[2] == "debug" then
 end            
 
 require "lib/vectorMath"
+require "lib/extendedTable"
 
 function love.load()
     Playground()
@@ -55,4 +56,5 @@ function love.mousepressed()
 end
 
 function Playground()
+    table.removeItem()
 end
