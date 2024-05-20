@@ -6,6 +6,7 @@ local Card = class("Card")
 
 --CONSTRUCTOR
 function Card:initialize(x, y, width, height)
+    self.isSelected = false
     self.x = x or 0
     self.y = y or 0
     self.width = width or 50
@@ -23,21 +24,26 @@ function Card:PhysicUpdate()
     else
         self:MoveToPosition(self.OriginX - self.width/2, self.OriginY - self.height/2)
     end
-
 end
 Card:include(Physic.HasBoxCollider)
 
-Card:include(Physic.CanListenToMouseEvents)
-function Card:OnMouseEntered()
-end
-function Card:OnMouseClicked()
-
-end
-function Card:OnMouseDown()
+Card:include(Physic.CanBeGrabbed)
+function Card:OnBeingGrabbed()
     self.isBeingGrabbed = true
 end
-function Card:OnMouseReleased()
+function Card:OnBeingReleased()
     self.isBeingGrabbed = false
+end
+
+Card:include(Physic.CanbeSelected)
+function Card:OnSelected()
+    self.isSelected = true
+end
+function Card:OnDeselected()
+    self.isSelected = false
+end
+function Card:IsBeingSelected()
+    return self.isSelected
 end
 
 Card:include(Physic.CanBeMoved)
@@ -51,7 +57,12 @@ end
 -- GRAPHICS
 Card:include(Graphic.CanBeRendered)
 function Card:Draw()
+    love.graphics.setColor(0.8, 0.8, 0.8)
     love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
+    if self.isSelected then
+        love.graphics.setColor(1, 0, 0)
+        love.graphics.rectangle("line", self.x - 2, self.y - 2, self.width + 4, self.height + 4)
+    end
 end
 
 -- GAMEPLAY

@@ -2,7 +2,10 @@ if arg[2] == "debug" then
     require("lldebugger").start()
 end            
 
+require "lib/vectorMath"
+
 function love.load()
+    Playground()
     Flux = require "lib/flux"
     Card = require "playingCard"
     Physic = require "component/physic"
@@ -23,8 +26,9 @@ function love.load()
     playerController = require "playerController"
     playerController:Init(GameplayEventSystem)
 
-    for i = 1, 1000 do
+    for i = 1, 100 do
         local card = Card:new(0,0, 80, 130)
+        Mouse:AddObjectToMouseOverlapDetection(card)
         GameplayEventSystem:BindToUIPlayCardEvent(card.TestFunc)
         cardContainer:AddItemToContainer(card)
     end
@@ -36,8 +40,8 @@ function love.update(dt)
     end
     Physic:Update()
 
-    Mouse:DetectMouseOnObjectsEvent(Physic.PhysicComponents)
     UISystem:Update()
+    Mouse:Update(dt)
     Debug:Update(dt)
 end
 function love.draw()
@@ -47,6 +51,8 @@ function love.draw()
 end
 
 function love.mousepressed()
-    Physic:OnMouseClicked()
     UISystem:OnMouseClicked()
+end
+
+function Playground()
 end

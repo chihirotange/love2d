@@ -13,33 +13,33 @@ local Physic = {
             v:PhysicUpdate()
         end
     end,
-    OnMouseClicked = function(self)
-        for k,v in ipairs(self.PhysicComponents) do
-            if v:IsCollideWithMouse() then
-                v:OnMouseClicked()
-            end
-        end
-    end,
     HasPhysic = {
         x = 0,
         y = 0,
         PhysicUpdate = function(self)
         end
     },
-    CanListenToMouseEvents = {
-        mouseTraceOrder = 0,
-        OnMouseEntered = function(self)
+    CanBeGrabbed = {
+        OnBeingGrabbed = function(self)
         end,
-        OnMouseClicked = function(self)
+        OnBeingReleased = function(self)
+        end
+    },
+    CanbeSelected = {
+        IsBeingSelected = function(self)
         end,
-        OnMouseDown = function(self)
+        OnSelected = function(self)
         end,
-        OnMouseReleased = function(self)
+        OnDeselected = function(self)
         end
     },
     HasBoxCollider = {
+            HasBoxCollider = {
+                isMouseAlreadyDown = false,
+            },
             width = 100,
             height = 100,
+            isMouseOver = false,
             -- @TODO: move to metatable
             IsCollideWithMouse = function(self)
                 local mouseX, mouseY = love.mouse.getPosition()
