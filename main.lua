@@ -56,5 +56,6 @@ function love.mousepressed()
 end
 
 function Playground()
-    table.removeItem()
+    local sceneManager = require "scene/sceneManager"
+    sceneManager:LoadScene("scene/mainmenu")
 end
