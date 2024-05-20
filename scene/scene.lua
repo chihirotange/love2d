@@ -1,8 +1,14 @@
 local Class = require "lib/middleclass"
 
 local Scene = Class("Scene")
-function Scene:LoadScene()
-    print("scene loaded")
+Scene.SceneManager = nil
+
+function Scene:Load()
 end
 
+function Scene:Update(dt)
+end
+
+function Scene:Draw(dt)
+end
 return Scene

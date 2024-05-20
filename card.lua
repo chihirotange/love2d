@@ -51,7 +51,6 @@ Card:include(Physic.HasOrigin)
 
 -- EVENTS
 function Card:TestFunc()
-    print("hello")
 end
 
 -- GRAPHICS

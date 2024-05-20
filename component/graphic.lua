@@ -4,7 +4,7 @@ local graphic = {
     AddToRenderUpdate = function(self, object)
         table.insert(self.PendingAddRenderComponents, object)
     end,
-    Update = function(self) 
+    Draw = function(self) 
         for k, v in ipairs(self.PendingAddRenderComponents) do
             table.insert(self.RenderComponents, v)
             self.PendingAddRenderComponents[k] = nil

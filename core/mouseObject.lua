@@ -24,7 +24,7 @@ local mouseObject = {
         self.ObjectUnderCursor = currentCollidedObject
     end,
     AddObjectToMouseOverlapDetection = function(self, object)
-        if object.IsCollideWithMouse then -- so i don't have to check valid for every frame, make sure object is valid from the start
+        if object and object.IsCollideWithMouse then -- so i don't have to check valid for every frame, make sure object is valid from the start
             table.insert(self.ObjectsToCheck, object)
         end
     end,
