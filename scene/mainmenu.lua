@@ -1,4 +1,11 @@
 local Scene = require "scene/scene"
+local UISystem = require "lib/ui"
+
+local function CreateUI()
+    local canvas = UISystem:createCanvas()
+    canvas:createButton(10,10, 200, 30, "Play")
+    canvas:createButton(500,10, 200, 30, "Discard")
+end
 
 local SceneMainMenu = Scene:new()
 function SceneMainMenu:Load()
@@ -11,6 +18,10 @@ function SceneMainMenu:Load()
         self.SceneManager.GameplayEventSystem:BindToUIPlayCardEvent(card.TestFunc)
         cardContainer:AddItemToContainer(card)
     end
+
+    --create ui
+    CreateUI()
 end
+
 
 return SceneMainMenu

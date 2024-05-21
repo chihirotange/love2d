@@ -34,7 +34,7 @@ local mouseObject = {
                 self.MouseDownPositionX, self.MouseDownPositionY = love.mouse.getPosition() 
             end
             -- if self.MouseDownElapsedTime > 0.1
-            if self.MouseDownElapsedTime > 0.05 and self:checkMouseIsDragging()
+            if self.MouseDownElapsedTime > 0.08 and self:checkMouseIsDragging()
             and self.ObjectUnderCursor and self.ObjectUnderCursor.OnBeingGrabbed
             then
                 self.isGrabbingSomething = true

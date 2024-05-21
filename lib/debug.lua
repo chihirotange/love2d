@@ -26,7 +26,8 @@ Debug = {
         love.graphics.setColor(0, 1, 0)
         --draw deltaTime
         local width = love.graphics.getWidth()
-        love.graphics.print("deltaTime: " .. string.format("%5.3f",self.dt), width - 110, 20)
+        local height = love.graphics.getHeight()
+        love.graphics.print("deltaTime: " .. string.format("%5.3f",self.dt), width - 110, height * 15/16)
 
         for k, v in ipairs(self.printQueue) do
             love.graphics.print(v.str, 50, k*20)
@@ -39,7 +40,7 @@ Debug = {
         end
         local stringToPrint = {
             str = str,
-            time = time or 0.5,
+            time = time or 1,
         }
         table.insert(self.pendingAdd, stringToPrint)
     end

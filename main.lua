@@ -8,6 +8,7 @@ require "lib/debug"
 
 local PlayerController = require "core/playerController"
 local GameplayEventSystem = require "core/gameplayEventSystem"
+local UISystem = require "lib/ui"
 
 function love.load()
     Playground()
@@ -32,15 +33,18 @@ function love.update(dt)
 
     SceneManager:Update(dt)
     PlayerController:Update(dt)
+    UISystem:Update(dt)
 
     Debug:Update(dt)
 end
 function love.draw()
     Graphic:Draw()
+    UISystem:Draw()
     Debug:Draw()
 end
 
 function love.mousepressed()
+    UISystem:OnMouseClicked()
 end
 
 function Playground()
