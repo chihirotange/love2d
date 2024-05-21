@@ -8,3 +8,9 @@ table.removeItem = function(tbl, item)
         end
     end
 end
+
+table.clear = function(tbl)
+    for k in pairs(tbl) do
+        tbl[k] = nil
+    end
+end

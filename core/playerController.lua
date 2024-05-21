@@ -42,13 +42,12 @@ local mouseObject = {
                 if self.ObjectUnderCursor.IsBeingSelected and self.ObjectUnderCursor:IsBeingSelected() then
                     self.ObjectUnderCursor:OnDeselected() 
                     table.removeItem(self.currentSelectedObjects, self.ObjectUnderCursor)
-                    print(#self.currentSelectedObjects)
                 end
             end
             self.MouseDownElapsedTime = self.MouseDownElapsedTime + dt
             self.MouseIsDownLastFrame = true
-            -- on mouse released
         end
+        -- on mouse released
         if not love.mouse.isDown(1)then
             if self.MouseIsDownLastFrame and self.ObjectUnderCursor then
                 if self.isGrabbingSomething and self.ObjectUnderCursor.OnBeingReleased then
@@ -57,11 +56,9 @@ local mouseObject = {
                     if not self.ObjectUnderCursor:IsBeingSelected() then
                         self.ObjectUnderCursor:OnSelected()
                         table.insert(self.currentSelectedObjects, self.ObjectUnderCursor)
-                        print(#self.currentSelectedObjects)
                     else
                         self.ObjectUnderCursor:OnDeselected()
                         table.removeItem(self.currentSelectedObjects, self.ObjectUnderCursor)
-                        print(#self.currentSelectedObjects)
                     end
                 end
             end
