@@ -30,6 +30,7 @@ local mouseObject = {
     end,
     Update = function(self, dt)
         if love.mouse.isDown(1) then
+            Debug:PrintString("down", 0.1)
             if not self.MouseIsDownLastFrame then
                 self.MouseDownPositionX, self.MouseDownPositionY = love.mouse.getPosition() 
             end
@@ -47,8 +48,8 @@ local mouseObject = {
             self.MouseDownElapsedTime = self.MouseDownElapsedTime + dt
             self.MouseIsDownLastFrame = true
         end
-        -- on mouse released
-        if not love.mouse.isDown(1)then
+        if not love.mouse.isDown(1) then
+            Debug:PrintString("up", 0.1)
             if self.MouseIsDownLastFrame and self.ObjectUnderCursor then
                 if self.isGrabbingSomething and self.ObjectUnderCursor.OnBeingReleased then
                     self.ObjectUnderCursor:OnBeingReleased()
@@ -66,7 +67,9 @@ local mouseObject = {
             self.MouseDownElapsedTime = 0
             self.isGrabbingSomething = false
         end
+        -- on mouse released
         self:checkObjectUnderCursor()
+        print(self.MouseIsDownLastFrame)
     end
 end
 }

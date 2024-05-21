@@ -39,7 +39,7 @@ Debug = {
             return
         end
         local stringToPrint = {
-            str = str,
+            str = tostring(str),
             time = time or 1,
         }
         table.insert(self.pendingAdd, stringToPrint)
