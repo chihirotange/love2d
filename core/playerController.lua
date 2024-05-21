@@ -30,7 +30,6 @@ local mouseObject = {
     end,
     Update = function(self, dt)
         if love.mouse.isDown(1) then
-            Debug:PrintString("down", 0.1)
             if not self.MouseIsDownLastFrame then
                 self.MouseDownPositionX, self.MouseDownPositionY = love.mouse.getPosition() 
             end
@@ -49,11 +48,10 @@ local mouseObject = {
             self.MouseIsDownLastFrame = true
         end
         if not love.mouse.isDown(1) then
-            Debug:PrintString("up", 0.1)
             if self.MouseIsDownLastFrame and self.ObjectUnderCursor then
                 if self.isGrabbingSomething and self.ObjectUnderCursor.OnBeingReleased then
                     self.ObjectUnderCursor:OnBeingReleased()
-                else if self.ObjectUnderCursor.OnSelected then
+                elseif self.ObjectUnderCursor.OnSelected then
                     if not self.ObjectUnderCursor:IsBeingSelected() then
                         self.ObjectUnderCursor:OnSelected()
                         table.insert(self.currentSelectedObjects, self.ObjectUnderCursor)
@@ -67,11 +65,10 @@ local mouseObject = {
             self.MouseDownElapsedTime = 0
             self.isGrabbingSomething = false
         end
+
         -- on mouse released
         self:checkObjectUnderCursor()
-        print(self.MouseIsDownLastFrame)
     end
-end
 }
 
 return mouseObject
