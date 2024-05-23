@@ -11,12 +11,14 @@ end
 function PlayingCard:Draw()
     Card.Draw(self)
     love.graphics.setColor(0, 0, 0)
-    love.graphics.print(self.Rank, self.x, self.y)
-    love.graphics.print(self.Suit, self.x + 40, self.y)
+    love.graphics.print(self.Rank, self.x + 5, self.y + 5)
+    love.graphics.print(self.Suit, self.x + 45, self.y + 5)
     love.graphics.setColor(1, 1, 1)
 end
 
-function PlayingCard:OnMouseClicked()
+function PlayingCard:OnSelected()
+    Card.OnSelected(self)
+    Debug.Log(self.Suit)
 end
 
 return PlayingCard

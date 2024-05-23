@@ -14,3 +14,23 @@ table.clear = function(tbl)
         tbl[k] = nil
     end
 end
+
+table.shuffle = function(tbl)
+    local len = #tbl
+    local r, tmp
+    math.randomseed(os.time())
+    for i = 1, len do
+        r = math.random(1, len)
+        tmp = tbl[i]
+        tbl[i] = tbl[r]
+        tbl[r] = tmp
+    end
+end
+
+table.pop = function(tbl)
+    if not tbl then return end
+    if #tbl == 0 then return end
+    local item = tbl[#tbl]
+    tbl[#tbl] = nil
+    return item
+end

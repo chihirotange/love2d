@@ -9,8 +9,8 @@ function Card:initialize(x, y, width, height)
     self.isSelected = false
     self.x = x or 0
     self.y = y or 0
-    self.width = width or 50
-    self.height = height or 50
+    self.width = width or 100
+    self.height = height or 150
     Physic:AddToPhysicUpdate(self)
     Graphic:AddToRenderUpdate(self)
     Card.isBeingGrabbed = false

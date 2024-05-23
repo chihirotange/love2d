@@ -6,7 +6,7 @@ local CardContainer = class("Card Container")
 function CardContainer:initialize(x, y, cardGap)
     self.x = x or 0 
     self.y = y or 0
-    self.CardGap = cardGap or 100
+    self.CardGap = cardGap or 110
     graphic:AddToRenderUpdate(self)
 end
 
