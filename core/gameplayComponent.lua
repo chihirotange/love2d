@@ -1,5 +1,3 @@
-local class = require "lib/middleclass"
-
-gameplayComponent = class("Gameplay Component")
-
+local gameplayComponent = {
+}
 return gameplayComponent

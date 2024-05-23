@@ -28,6 +28,11 @@ local mouseObject = {
             table.insert(self.ObjectsToCheck, object)
         end
     end,
+    PlayHand = function(self)
+        for k, v in ipairs(self.currentSelectedObjects) do
+            
+        end
+    end,
     Update = function(self, dt)
         if love.mouse.isDown(1) then
             if not self.MouseIsDownLastFrame then

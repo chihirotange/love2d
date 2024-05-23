@@ -48,7 +48,7 @@ button:include({
         and mouseY >= self.y and mouseY <= self.y + self.height
     end,
     OnMouseClicked = function(self)
-        Debug:PrintString(self.text)
+        Debug.Log(self.text)
     end,
     OnMouseOver = function(self)
         self.isHovered = true

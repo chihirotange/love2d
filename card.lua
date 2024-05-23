@@ -15,6 +15,7 @@ function Card:initialize(x, y, width, height)
     Graphic:AddToRenderUpdate(self)
     Card.isBeingGrabbed = false
 end
+
 -- PHYSICS
 Card:include(Physic.HasPhysic)
 function Card:PhysicUpdate()

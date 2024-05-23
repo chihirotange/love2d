@@ -35,12 +35,12 @@ function love.update(dt)
     PlayerController:Update(dt)
     UISystem:Update(dt)
 
-    Debug:Update(dt)
+    Debug.Update(dt)
 end
 function love.draw()
     Graphic:Draw()
     UISystem:Draw()
-    Debug:Draw()
+    Debug.Draw()
 end
 
 function love.mousepressed()
