@@ -1,19 +1,34 @@
 Object = require("libs.classic")
+UiManager = require("simpleUi")
 
 Timer = require("libs/timer")
 
 function love.load()
+  currentCursor = require('cursor')
 	globalTimer = Timer()
-	globalTimer:after(2, function()
-		print("hello after 2s")
-	end)
+  uiManager = UiManager(currentCursor)
+  mainMenu = uiManager:verticalPanel(100, 0, 400, 500)
+  mainMenu:setContentSpacing(10)
+
+  btn1 = uiManager.button('aichan', 10, 10, 100, 30)
+  btn2 = uiManager.button('aichan2', 10, 10, 100, 30)
+  btn3 = uiManager.button('aichan3', 10, 10, 100, 30)
+  mainMenu:add(btn1)
+  mainMenu:add(btn2)
+  mainMenu:add(btn3)
 end
 
 function love.update(dt)
 	globalTimer:update(dt)
+  uiManager:update(dt)
+  currentCursor:update(dt)
 end
 
-function love.draw() end
+function love.draw()
+  uiManager:draw()
+  currentCursor:draw()
+  -- love.graphics.rectangle("fill", 10, 10, 100, 30)
+end
 
 -- handle inputs
 function love.keypressed(key)
