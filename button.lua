@@ -33,13 +33,13 @@ function button:isCollide(x, y)
   and y <= self.y + self.height
 end
 
-function button:Hover()
+function button:hover()
   self.isHovering = true
   self._currentBgColor = self.hoveredBgColor
   self._currentTextColor = self.hoveredTextColor
 end
 
-function button:HoverExit()
+function button:hoverExit()
   self.isHovering = false
   self._currentBgColor = self.bgColor
   self._currentTextColor = self.textColor

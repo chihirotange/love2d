@@ -22,10 +22,10 @@ end
 function panel:update(dt)
   for i, node in ipairs(self.nodes) do
     if node:isCollide(self.cursor.x, self.cursor.y) then
-      node:Hover()
+      node:hover()
     else
       if node.isHovering then
-        node:HoverExit()
+        node:hoverExit()
       end
     end
   end
