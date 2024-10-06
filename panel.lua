@@ -12,20 +12,22 @@ function panel:new(cursor, x, y, width, height)
   print(self.width)
   self.height = height
   self._alignment = "centered"
+  self.cursor:addListener(self)
 end
 
 function panel:add(node)
   table.insert(self.nodes, node)
-  self.cursor:addListener(node)
 end
 
 function panel:update(dt)
   for i, node in ipairs(self.nodes) do
     if node:isCollide(self.cursor.x, self.cursor.y) then
+      node.isHovering = true
       node:hover()
     else
       if node.isHovering then
         node:hoverExit()
+        node.isHovering = false
       end
     end
   end
@@ -39,7 +41,14 @@ function panel:draw()
   for i, node in ipairs(self.nodes) do
     node:draw()
   end
+end
 
+function panel:onPressed()
+  for i, node in ipairs(self.nodes) do
+    if node:isCollide(self.cursor.x, self.cursor.y) then
+      node.onPressed()
+    end
+  end
 end
 
 return panel

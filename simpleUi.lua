@@ -42,4 +42,9 @@ function simpleUi:draw()
   end
 end
 
+-- INPUT
+function simpleUi:pressed()
+  print("hello world")
+end
+
 return simpleUi

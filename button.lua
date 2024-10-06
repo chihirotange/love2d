@@ -34,18 +34,17 @@ function button:isCollide(x, y)
 end
 
 function button:hover()
-  self.isHovering = true
   self._currentBgColor = self.hoveredBgColor
   self._currentTextColor = self.hoveredTextColor
 end
 
 function button:hoverExit()
-  self.isHovering = false
   self._currentBgColor = self.bgColor
   self._currentTextColor = self.textColor
 end
 
 function button:onPressed()
+  print("hello")
 end
 
 function button:getVerticalBound()
